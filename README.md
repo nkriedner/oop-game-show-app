@@ -1,4 +1,4 @@
-# Word Guessing App using Object Oriented Programming
+# Word Guessing Game (using Object Oriented Programming)
 
 This project is the fourth task for Teamtreehouse's "Fullstack JavaScript Techdegree".
 
