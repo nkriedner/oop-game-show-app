@@ -14,10 +14,10 @@ class Game {
         // Hide the start screen overlay
         document.getElementById("overlay").style.display = "none";
         // Set the activePhrase to a random phrase:
-        this.activePhrase = getRandomPhrase();
+        this.activePhrase = this.getRandomPhrase();
         // Add phrase to board:
         // -> Call addPhraseToDisplay() on the activePhrase property
-        phrase.addPhraseToDisplay(this.activePhrase);
+        // phrase.addPhraseToDisplay(this.activePhrase);
     }
     getRandomPhrase() {
         // Create a random number between 1 and the length of the phrase:
@@ -30,5 +30,6 @@ class Game {
     handleInteraction() {
         // Disable the selected letter's onscreen keyboard function:
         // ->
+        console.log("handleInteraction() was called");
     }
 }
