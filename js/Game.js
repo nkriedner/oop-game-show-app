@@ -25,11 +25,14 @@ class Game {
             Math.random() * this.phrases.length + 1
         );
         // Return a phrase based on the random number:
-        return this.phrases[randomNumber]; // <- Check
+        const randomPhrase = new Phrase(this.phrases[randomNumber]);
+        // return this.phrases[randomNumber]; // <- Check
+        return randomPhrase;
     }
-    handleInteraction() {
-        // Disable the selected letter's onscreen keyboard function:
+    handleInteraction(clickedLetter) {
+        console.log("handleInteraction() was called on button:", clickedLetter);
+        // Disable the clicked letter's onscreen keyboard function:
         // ->
-        console.log("handleInteraction() was called");
+        // If the phrase does not include guessed letter add wrong class to
     }
 }

@@ -20,6 +20,6 @@ document.getElementById("qwerty").addEventListener("click", (e) => {
     // Check that no space was clicked (space click's e.target have the keyrow class):
     if (e.target.className !== "keyrow") {
         console.log("no keyrow class");
-        game.handleInteraction();
+        game.handleInteraction(e.target.textContent);
     }
 });
