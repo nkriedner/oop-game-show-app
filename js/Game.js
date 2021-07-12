@@ -25,6 +25,10 @@ class Game {
             Math.random() * this.phrases.length + 1
         );
         // Return a phrase based on the random number:
-        return this.phrases[randomNumber];
+        return this.phrases[randomNumber]; // <- Check
+    }
+    handleInteraction() {
+        // Disable the selected letter's onscreen keyboard function:
+        // ->
     }
 }
