@@ -1,6 +1,6 @@
 class Phrase {
     constructor(phrase) {
-        this.phrase = phrase.toLowerCase();
+        this.phrase = phrase.phrase.toLowerCase();
     }
     addPhraseToDisplay(phrase) {
         // Grab hold of the place where to put the li's
@@ -9,7 +9,7 @@ class Phrase {
         const phraseArray = phrase.split("");
         // Create an li for each letter:
         phraseArray.forEach(function (letter) {
-            console.log(letter);
+            // console.log(letter);
             const li = document.createElement("li");
             // If letter is a space:
             if (letter === " ") {
