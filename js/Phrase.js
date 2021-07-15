@@ -16,6 +16,7 @@ class Phrase {
                 li.className = "space";
             } else {
                 li.classList.add("hide", "letter", letter);
+                li.textContent = letter;
             }
             // Append the li to the ul:
             ul.appendChild(li);
@@ -25,18 +26,21 @@ class Phrase {
         return this.phrase.includes(letter);
     }
     showMatchedLetter(letter) {
+        console.log("this.showMatchedLetter was called with letter:", letter);
         // Select the list items with the phrase letters:
         const lis = document.querySelectorAll("#phrase ul li");
         // Loop through the list and check if an item has a letter class:
-        lis.forEach(
-            (li) =>
-                function () {
-                    if (li.classList.contains(letter)) {
-                        // Remove the hide class and add the show class
-                        li.classList.remove("hide");
-                        li.classList.add("show");
-                    }
-                }
-        );
+        console.log("selected const -> lis:", lis);
+        for (let i = 0; i < lis.length; i++) {
+            // console.log("lis", i, lis[i]);
+            console.log(
+                "lis[i].contains(letter):",
+                lis[i].classList.contains(letter)
+            );
+            if (lis[i].classList.contains(letter)) {
+                lis[i].classList.remove("hide");
+                lis[i].classList.add("show");
+            }
+        }
     }
 }

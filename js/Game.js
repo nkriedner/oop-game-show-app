@@ -18,13 +18,6 @@ class Game {
                 phrase: "Everything is possible",
             },
         ];
-        // this.phrases = [
-        //     "We are all one",
-        //     "I see the divine in you",
-        //     "How about now",
-        //     "Surrendering liberates",
-        //     "Everything is possible",
-        // ];
         this.activePhrase = null;
     }
     startGame() {
@@ -51,16 +44,23 @@ class Game {
         // Disable the clicked letter's onscreen keyboard function:
         // ->
         // If the phrase does not include guessed letter:
+
+        console.log(
+            "this.activePhrase.phrase.includes(clickedLetter.textContent):",
+            this.activePhrase.phrase.includes(clickedLetter.textContent)
+        );
+
         if (!this.activePhrase.phrase.includes(clickedLetter.textContent)) {
+            console.log("FALSE");
             // Add wrong class to selected letter's keyboard button:
-            console.log(clickedLetter);
-            clickedLetter.classlist.add("wrong");
+            clickedLetter.classList.add("wrong");
+            console.log("clickedLetter.className:", clickedLetter.className);
             // Call removeLife() function:
             // ->
         } else {
+            console.log("TRUE");
             // Add chosen class to selected letter's keyboard button:
-            console.log(clickedLetter);
-            clickedLetter.classlist.add("chosen");
+            clickedLetter.classList.add("chosen");
             // Call showMatchedLetter()
             this.activePhrase.showMatchedLetter(clickedLetter.textContent);
             // Check for win
