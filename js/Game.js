@@ -43,28 +43,83 @@ class Game {
         console.log("handleInteraction() was called on button:", clickedLetter);
         // Disable the clicked letter's onscreen keyboard function:
         // ->
-        // If the phrase does not include guessed letter:
 
-        console.log(
-            "this.activePhrase.phrase.includes(clickedLetter.textContent):",
-            this.activePhrase.phrase.includes(clickedLetter.textContent)
-        );
-
+        // If phrase does not include guessed letter:
         if (!this.activePhrase.phrase.includes(clickedLetter.textContent)) {
-            console.log("FALSE");
-            // Add wrong class to selected letter's keyboard button:
+            // Add wrong class styling to selected letter's keyboard button:
             clickedLetter.classList.add("wrong");
-            console.log("clickedLetter.className:", clickedLetter.className);
-            // Call removeLife() function:
-            // ->
+            // Remove a heart life:
+            this.removeLife();
         } else {
-            console.log("TRUE");
             // Add chosen class to selected letter's keyboard button:
             clickedLetter.classList.add("chosen");
-            // Call showMatchedLetter()
+            // Show matching letter on screen:
             this.activePhrase.showMatchedLetter(clickedLetter.textContent);
-            // Check for win
-            // ->
+            // Check for win:
+            if (this.checkForWin()) {
+                this.gameOver("win");
+            }
         }
+    }
+    checkForWin() {
+        console.log("checkForWin() was called");
+        // Check if player has revealed all letters in phrase:
+        // 1) Select the letter placeholders array and define variable for number of hide classes:
+        const letterPlaceholder = document.querySelectorAll("#phrase ul li");
+        let numberOfHideClasses = 0;
+        // 2) Loop through the letterPlacholder list:
+        for (let i = 0; i < letterPlaceholder.length; i++) {
+            // Check if this placeholder has hide class:
+            if (letterPlaceholder[i].classList.contains("hide")) {
+                numberOfHideClasses++;
+            }
+        }
+        // 3) Check the number of hide classes:
+        if (numberOfHideClasses === 0) {
+            // If there is no hide class -> return TRUE
+            return true;
+        } else {
+            // If there is a hide class -> return FALSE
+            return false;
+        }
+    }
+    removeLife() {
+        console.log("removeLife() was activated");
+        // Increment the missed variable:
+        this.missed++;
+        console.log("this.missed:", this.missed);
+        // Check if all 5 lifes have been lost:
+        if (this.missed > 4) {
+            console.log("more than 4 misses");
+            this.gameOver("lose");
+        }
+        // Replace lifeHeart.png with lostHeart.png:
+        // 1) Select the imgs:
+        const heartImgs = document.querySelectorAll(".tries img");
+        // 2) Loop through heartImgs and replace the first img that is ot lifeHeart.png:
+        for (let i = 0; i < heartImgs.length; i++) {
+            console.log(heartImgs[i].getAttribute("src"));
+            if (heartImgs[i].getAttribute("src") === "images/liveHeart.png") {
+                heartImgs[i].setAttribute("src", "images/lostHeart.png");
+                return;
+            }
+        }
+    }
+    gameOver(winOrLose) {
+        console.log("GAME OVER!!!");
+        // Display original start screen overlay:
+        const overlay = document.getElementById("overlay");
+        overlay.style.display = "flex";
+        // Update overlay h1 with friendly win / lose message:
+        let gameOverMessage;
+        if (winOrLose === "win") {
+            gameOverMessage = "You win!!!";
+        } else if (winOrLose === "lose") {
+            gameOverMessage = "You lose!!!";
+        }
+        document.getElementById("game-over-message").textContent =
+            gameOverMessage;
+        // Replace overlay start class with win/lose class
+        overlay.className = winOrLose;
     }
 }

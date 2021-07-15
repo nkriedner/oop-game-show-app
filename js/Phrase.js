@@ -30,13 +30,13 @@ class Phrase {
         // Select the list items with the phrase letters:
         const lis = document.querySelectorAll("#phrase ul li");
         // Loop through the list and check if an item has a letter class:
-        console.log("selected const -> lis:", lis);
+        // console.log("selected const -> lis:", lis);
         for (let i = 0; i < lis.length; i++) {
             // console.log("lis", i, lis[i]);
-            console.log(
-                "lis[i].contains(letter):",
-                lis[i].classList.contains(letter)
-            );
+            // console.log(
+            //     "lis[i].contains(letter):",
+            //     lis[i].classList.contains(letter)
+            // );
             if (lis[i].classList.contains(letter)) {
                 lis[i].classList.remove("hide");
                 lis[i].classList.add("show");
