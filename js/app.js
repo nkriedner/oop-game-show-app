@@ -21,3 +21,21 @@ document.getElementById("qwerty").addEventListener("click", (e) => {
         game.handleInteraction(e.target);
     }
 });
+
+// Computer keyboard event handler:
+document.addEventListener("keyup", (e) => {
+    // Capture chosen keyboard input:
+    const chosenLetter = e.key;
+    // Define variable for chosen letter button:
+    let chosenLetterButton;
+    // Check if the keyboard input is a key letter on screenboard:
+    // 1) Loop through key button:
+    const keyButtons = document.querySelectorAll(".key");
+    // 2) Loop through keyButtons and set chosenLetterButon to corresponding letter button:
+    for (let i = 0; i < keyButtons.length; i++) {
+        if (keyButtons[i].textContent === chosenLetter) {
+            chosenLetterButton = keyButtons[i];
+            game.handleInteraction(chosenLetterButton);
+        }
+    }
+});
