@@ -26,7 +26,7 @@ class Phrase {
         return this.phrase.includes(letter);
     }
     showMatchedLetter(letter) {
-        console.log("this.showMatchedLetter was called with letter:", letter);
+        // console.log("this.showMatchedLetter was called with letter:", letter);
         // Select the list items with the phrase letters:
         const lis = document.querySelectorAll("#phrase ul li");
         // Loop through the list and check if an item has a letter class:

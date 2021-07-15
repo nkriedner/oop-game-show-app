@@ -41,23 +41,27 @@ class Game {
     }
     handleInteraction(clickedLetter) {
         console.log("handleInteraction() was called on button:", clickedLetter);
-        // Disable the clicked letter's onscreen keyboard function:
-        // ->
+        // Check if clicked letter was disabled (= without key class):
+        console.log("contains key:", clickedLetter.classList.contains("key"));
+        if (clickedLetter.classList.contains("key")) {
+            // Disable the clicked letter's onscreen keyboard function:
+            clickedLetter.classList.remove("key");
 
-        // If phrase does not include guessed letter:
-        if (!this.activePhrase.phrase.includes(clickedLetter.textContent)) {
-            // Add wrong class styling to selected letter's keyboard button:
-            clickedLetter.classList.add("wrong");
-            // Remove a heart life:
-            this.removeLife();
-        } else {
-            // Add chosen class to selected letter's keyboard button:
-            clickedLetter.classList.add("chosen");
-            // Show matching letter on screen:
-            this.activePhrase.showMatchedLetter(clickedLetter.textContent);
-            // Check for win:
-            if (this.checkForWin()) {
-                this.gameOver("win");
+            // If phrase does not include guessed letter:
+            if (!this.activePhrase.phrase.includes(clickedLetter.textContent)) {
+                // Add wrong class styling to selected letter's keyboard button:
+                clickedLetter.classList.add("wrong");
+                // Remove a heart life:
+                this.removeLife();
+            } else {
+                // Add chosen class to selected letter's keyboard button:
+                clickedLetter.classList.add("chosen");
+                // Show matching letter on screen:
+                this.activePhrase.showMatchedLetter(clickedLetter.textContent);
+                // Check for win:
+                if (this.checkForWin()) {
+                    this.gameOver("win");
+                }
             }
         }
     }
