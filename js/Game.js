@@ -21,16 +21,12 @@ class Game {
         this.activePhrase = null;
     }
     startGame() {
-        // Reset the game:
-        // this.resetGame();
-        // Hide the start screen overlay
+        // Hide the start screen overlay:
         document.getElementById("overlay").style.display = "none";
         // Set the activePhrase to a random phrase:
         this.activePhrase = this.getRandomPhrase();
         // Add phrase to display:
-        // -> Call addPhraseToDisplay() on the activePhrase property
         this.activePhrase.addPhraseToDisplay(this.activePhrase.phrase);
-        // phrase.addPhraseToDisplay(this.activePhrase);
     }
     getRandomPhrase() {
         // Create a random number between 1 and the length of the phrase:
@@ -38,18 +34,16 @@ class Game {
         // Return a phrase based on the random number:
         const randomPhrase = new Phrase(this.phrases[randomNumber]);
         console.log("Random Phrase:", randomPhrase.phrase);
-        // return this.phrases[randomNumber]; // <- Check
         return randomPhrase;
     }
     handleInteraction(clickedLetter) {
-        console.log("handleInteraction() was called on button:", clickedLetter);
         // Check if clicked letter was disabled (= without key class):
-        console.log("contains key:", clickedLetter.classList.contains("key"));
+        // Only then runs the rest of the checks ->
         if (clickedLetter.classList.contains("key")) {
             // Disable the clicked letter's onscreen keyboard function:
             clickedLetter.classList.remove("key");
 
-            // If phrase does not include guessed letter:
+            // Check 2: If phrase does not include guessed letter:
             if (!this.activePhrase.phrase.includes(clickedLetter.textContent)) {
                 // Add wrong class styling to selected letter's keyboard button:
                 clickedLetter.classList.add("wrong");
@@ -68,7 +62,6 @@ class Game {
         }
     }
     checkForWin() {
-        console.log("checkForWin() was called");
         // Check if player has revealed all letters in phrase:
         // 1) Select the letter placeholders array and define variable for number of hide classes:
         const letterPlaceholder = document.querySelectorAll("#phrase ul li");
@@ -82,21 +75,18 @@ class Game {
         }
         // 3) Check the number of hide classes:
         if (numberOfHideClasses === 0) {
-            // If there is no hide class -> return TRUE
+            // If there is no hide class -> return TRUE (= win)
             return true;
         } else {
-            // If there is a hide class -> return FALSE
+            // If there is a hide class -> return FALSE (= lose)
             return false;
         }
     }
     removeLife() {
-        console.log("removeLife() was activated");
         // Increment the missed variable:
         this.missed++;
-        console.log("this.missed:", this.missed);
         // Check if all 5 lifes have been lost:
         if (this.missed > 4) {
-            console.log("more than 4 misses");
             this.gameOver("lose");
         }
         // Replace lifeHeart.png with lostHeart.png:
@@ -104,7 +94,6 @@ class Game {
         const heartImgs = document.querySelectorAll(".tries img");
         // 2) Loop through heartImgs and replace the first img that is ot lifeHeart.png:
         for (let i = 0; i < heartImgs.length; i++) {
-            // console.log(heartImgs[i].getAttribute("src"));
             if (heartImgs[i].getAttribute("src") === "images/liveHeart.png") {
                 heartImgs[i].setAttribute("src", "images/lostHeart.png");
                 return;
@@ -113,7 +102,7 @@ class Game {
     }
     gameOver(winOrLose) {
         console.log("GAME OVER!!!");
-        // Display original start screen overlay:
+        // Select overlay and display original start screen overlay:
         const overlay = document.getElementById("overlay");
         overlay.style.display = "flex";
         // Update overlay h1 with friendly win / lose message:
@@ -139,11 +128,8 @@ class Game {
         keyboardBtns.forEach((btn) => {
             btn.className = "key";
         });
-        // Reset all heart display
-        // Replace all src with lifeHeart.png:
-        // 1) Select the imgs:
+        // Replace all heart img src with lifeHeart.png:
         const heartImgs = document.querySelectorAll(".tries img");
-        // 2) Loop through heartImgs and set all src to lifeHeart.png:
         for (let i = 0; i < heartImgs.length; i++) {
             heartImgs[i].setAttribute("src", "images/liveHeart.png");
         }

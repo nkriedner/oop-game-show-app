@@ -14,14 +14,10 @@ startGameBtn.addEventListener("click", function () {
 document.getElementById("qwerty").addEventListener("click", (e) => {
     // Capture chosen letter:
     const chosenLetter = e.target.textContent;
-    console.log("chosenLetter:", chosenLetter);
 
     // Check that no space was clicked (space click's 'e.target' have the keyrow class):
     if (e.target.className !== "keyrow") {
         // No space was clicked -> calls handleInteraction()
         game.handleInteraction(e.target);
-    } else {
-        // Space was clicked:
-        console.log("KEYROW SPACE WAS CLICKED");
     }
 });
