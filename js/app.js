@@ -6,6 +6,7 @@ const startGameBtn = document.getElementById("btn__reset");
 startGameBtn.addEventListener("click", function () {
     console.log("start game button was clicked");
     game = new Game();
+    game.resetGame();
     game.startGame();
 });
 

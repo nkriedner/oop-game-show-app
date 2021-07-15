@@ -21,6 +21,8 @@ class Game {
         this.activePhrase = null;
     }
     startGame() {
+        // Reset the game:
+        // this.resetGame();
         // Hide the start screen overlay
         document.getElementById("overlay").style.display = "none";
         // Set the activePhrase to a random phrase:
@@ -102,7 +104,7 @@ class Game {
         const heartImgs = document.querySelectorAll(".tries img");
         // 2) Loop through heartImgs and replace the first img that is ot lifeHeart.png:
         for (let i = 0; i < heartImgs.length; i++) {
-            console.log(heartImgs[i].getAttribute("src"));
+            // console.log(heartImgs[i].getAttribute("src"));
             if (heartImgs[i].getAttribute("src") === "images/liveHeart.png") {
                 heartImgs[i].setAttribute("src", "images/lostHeart.png");
                 return;
@@ -125,5 +127,25 @@ class Game {
             gameOverMessage;
         // Replace overlay start class with win/lose class
         overlay.className = winOrLose;
+    }
+    resetGame() {
+        // Remove all phrase letter placeholders:
+        const ul = document.querySelector("#phrase ul");
+        while (ul.firstChild) {
+            ul.removeChild(ul.firstChild);
+        }
+        // Select and reset all keyboard screen buttons:
+        const keyboardBtns = document.querySelectorAll(".keyrow button");
+        keyboardBtns.forEach((btn) => {
+            btn.className = "key";
+        });
+        // Reset all heart display
+        // Replace all src with lifeHeart.png:
+        // 1) Select the imgs:
+        const heartImgs = document.querySelectorAll(".tries img");
+        // 2) Loop through heartImgs and set all src to lifeHeart.png:
+        for (let i = 0; i < heartImgs.length; i++) {
+            heartImgs[i].setAttribute("src", "images/liveHeart.png");
+        }
     }
 }
