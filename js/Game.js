@@ -41,7 +41,7 @@ class Game {
     }
     handleInteraction(clickedLetter) {
         // Check if clicked letter was disabled (= without key class):
-        // Only then runs the rest of the checks ->
+        // Only if they are not disabled runs the rest of the checks ->
         if (clickedLetter.classList.contains("key")) {
             // Disable the clicked letter's onscreen keyboard function:
             clickedLetter.classList.remove("key");
