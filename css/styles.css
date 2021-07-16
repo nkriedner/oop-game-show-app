@@ -28,6 +28,7 @@ body {
     flex-direction: column;
     display: flex;
     height: 100vh;
+    /* CSS from www.uigradients.com for "COPPER"-> */
     background: #b79891; /* fallback for old browsers */
     background: -webkit-linear-gradient(
         to right,
@@ -39,6 +40,7 @@ body {
         #94716b,
         #b79891
     ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    /* <-- */
 }
 
 li,
@@ -50,8 +52,6 @@ ul {
 
 h2 {
     margin: 0;
-    /* text-transform: uppercase; */
-    font-size: var(--font-size-large);
     font-size: 85px;
     margin: 0;
     font-family: "Dancing Script", cursive;
@@ -144,7 +144,6 @@ button {
 }
 
 .chosen {
-    background: #3a3f58;
     background: forestgreen;
     border-radius: 5px;
     font-size: var(--font-size-medium);
@@ -152,7 +151,6 @@ button {
 }
 
 .wrong {
-    background: #f7a964;
     background: firebrick;
     color: #ffffff;
 }

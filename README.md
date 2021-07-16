@@ -9,12 +9,12 @@ I wrote all of the JavaScript code in the js files.
 The html and css files were provided by Teamtreehouse.
 For some personalization I made the following CSS changes:
 
--   Change background color of body to a gradient
--   Changed background color for correct and wrong letters of the onscreen keyboard (to red/green)
--   Changed font-family and size of h2s
--   Changed background color of the letters in the phrase display when they are shown (to darkgrey)
+-   Use a ui gradient for the body background color
+-   Change background color for correct and wrong letters of the onscreen keyboard (to red/green)
+-   Change font-family of h2s to Google Font's "Dancing Script" and enlarge the font-size
+-   Change background color of the letters in the phrase display when they are shown (to darkgrey)
 -   Create a transition for the letters when they display
--   Changed background of scoreboard
+-   Change background of scoreboard
 
 To view the project visit: https://nkriedner.github.io/oop-game-show-app/
 

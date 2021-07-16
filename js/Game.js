@@ -33,7 +33,10 @@ class Game {
         const randomNumber = Math.floor(Math.random() * this.phrases.length);
         // Return a phrase based on the random number:
         const randomPhrase = new Phrase(this.phrases[randomNumber]);
-        console.log("Random Phrase:", randomPhrase.phrase);
+        console.log(
+            "In case you want to cheat, the random phrase is:",
+            randomPhrase.phrase
+        );
         return randomPhrase;
     }
     handleInteraction(clickedLetter) {
