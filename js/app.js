@@ -5,7 +5,6 @@ let game;
 const startGameBtn = document.getElementById("btn__reset");
 startGameBtn.addEventListener("click", function () {
     game = new Game();
-    game.resetGame();
     game.startGame();
 });
 
@@ -23,18 +22,21 @@ document.getElementById("qwerty").addEventListener("click", (e) => {
 
 // Computer keyboard event handler:
 document.addEventListener("keyup", (e) => {
-    // Capture chosen keyboard input:
-    const chosenLetter = e.key;
-    // Define variable for chosen letter button:
-    let chosenLetterButton;
-    // Check if the keyboard input is a key letter on screenboard:
-    // 1) Loop through key button:
-    const keyButtons = document.querySelectorAll(".key");
-    // 2) Loop through keyButtons and set chosenLetterButon to corresponding letter button:
-    for (let i = 0; i < keyButtons.length; i++) {
-        if (keyButtons[i].textContent === chosenLetter) {
-            chosenLetterButton = keyButtons[i];
-            game.handleInteraction(chosenLetterButton);
+    // Allow keyups only when the overlay is NOT present (meaning only when the game runs):
+    if (document.getElementById("overlay").style.display === "none") {
+        // Capture chosen keyboard input:
+        const chosenLetter = e.key;
+        // Define variable for chosen letter button:
+        let chosenLetterButton;
+        // Check if the keyboard input is a key letter on screenboard:
+        // 1) Loop through key button:
+        const keyButtons = document.querySelectorAll(".key");
+        // 2) Loop through keyButtons and set chosenLetterButon to corresponding letter button:
+        for (let i = 0; i < keyButtons.length; i++) {
+            if (keyButtons[i].textContent === chosenLetter) {
+                chosenLetterButton = keyButtons[i];
+                game.handleInteraction(chosenLetterButton);
+            }
         }
     }
 });

@@ -24,28 +24,26 @@ class Game {
         // Hide the start screen overlay:
         document.getElementById("overlay").style.display = "none";
         // Set the activePhrase to a random phrase:
-        this.activePhrase = this.getRandomPhrase();
+        const randomPhrase = this.getRandomPhrase();
+        this.activePhrase = new Phrase(randomPhrase);
         // Add phrase to display:
         this.activePhrase.addPhraseToDisplay(this.activePhrase.phrase);
+        console.log(
+            "In case you want to cheat, the random phrase is:",
+            this.activePhrase
+        );
     }
     getRandomPhrase() {
         // Create a random number between 1 and the length of the phrase:
         const randomNumber = Math.floor(Math.random() * this.phrases.length);
         // Return a phrase based on the random number:
-        const randomPhrase = new Phrase(this.phrases[randomNumber]);
-        console.log(
-            "In case you want to cheat, the random phrase is:",
-            randomPhrase.phrase
-        );
-        return randomPhrase;
+        return this.phrases[randomNumber];
     }
     handleInteraction(clickedLetter) {
-        // Check if clicked letter was disabled (= without key class):
-        // Only if they are not disabled runs the rest of the checks ->
-        if (clickedLetter.classList.contains("key")) {
-            // Disable the clicked letter's onscreen keyboard function:
-            clickedLetter.classList.remove("key");
-
+        // Check that clicked letter is not disabled (for keyup events):
+        if (clickedLetter.disabled === false) {
+            // Disable the clicked keyboard button:
+            clickedLetter.disabled = true;
             // Check 2: If phrase does not include guessed letter:
             if (!this.activePhrase.phrase.includes(clickedLetter.textContent)) {
                 // Add wrong class styling to selected letter's keyboard button:
@@ -60,6 +58,7 @@ class Game {
                 // Check for win:
                 if (this.checkForWin()) {
                     this.gameOver("win");
+                    this.resetGame();
                 }
             }
         }
@@ -88,10 +87,6 @@ class Game {
     removeLife() {
         // Increment the missed variable:
         this.missed++;
-        // Check if all 5 lifes have been lost:
-        if (this.missed > 4) {
-            this.gameOver("lose");
-        }
         // Replace lifeHeart.png with lostHeart.png:
         // 1) Select the imgs:
         const heartImgs = document.querySelectorAll(".tries img");
@@ -99,8 +94,13 @@ class Game {
         for (let i = 0; i < heartImgs.length; i++) {
             if (heartImgs[i].getAttribute("src") === "images/liveHeart.png") {
                 heartImgs[i].setAttribute("src", "images/lostHeart.png");
-                return;
+                break;
             }
+        }
+        // Check if all 5 lifes have been lost:
+        if (this.missed > 4) {
+            this.gameOver("lose");
+            this.resetGame();
         }
     }
     gameOver(winOrLose) {
@@ -130,6 +130,7 @@ class Game {
         const keyboardBtns = document.querySelectorAll(".keyrow button");
         keyboardBtns.forEach((btn) => {
             btn.className = "key";
+            btn.disabled = false;
         });
         // Replace all heart img src with lifeHeart.png:
         const heartImgs = document.querySelectorAll(".tries img");
