@@ -2,21 +2,11 @@ class Game {
     constructor() {
         this.missed = 0;
         this.phrases = [
-            {
-                phrase: "We are all one",
-            },
-            {
-                phrase: "I see the divine in you",
-            },
-            {
-                phrase: "Surrendering liberates",
-            },
-            {
-                phrase: "How about now",
-            },
-            {
-                phrase: "Everything is possible",
-            },
+            new Phrase("We are all one"),
+            new Phrase("I see the divine in you"),
+            new Phrase("Surrendering liberates"),
+            new Phrase("How about Now"),
+            new Phrase("Everything is possible"),
         ];
         this.activePhrase = null;
     }
