@@ -1,12 +1,12 @@
 class Phrase {
     constructor(phrase) {
-        this.phrase = phrase.phrase.toLowerCase();
+        this.phrase = phrase.toLowerCase();
     }
     addPhraseToDisplay(phrase) {
         // Grab hold of the place where to put the li's of phrase:
         const ul = document.querySelector("#phrase ul");
         // Create letter array from phrase string:
-        const phraseArray = phrase.split("");
+        const phraseArray = phrase.phrase.split("");
         // Create an li for each letter:
         phraseArray.forEach(function (letter) {
             const li = document.createElement("li");

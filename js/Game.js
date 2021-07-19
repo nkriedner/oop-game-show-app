@@ -11,17 +11,19 @@ class Game {
         this.activePhrase = null;
     }
     startGame() {
+        console.log("this.phrases:", this.phrases);
         // Hide the start screen overlay:
         document.getElementById("overlay").style.display = "none";
         // Set the activePhrase to a random phrase:
-        const randomPhrase = this.getRandomPhrase();
-        this.activePhrase = new Phrase(randomPhrase);
+        console.log("this.getRandomPhrase():", this.getRandomPhrase());
+        this.activePhrase = this.getRandomPhrase();
+        console.log("this.activePhrase:", this.activePhrase);
         // Add phrase to display:
-        this.activePhrase.addPhraseToDisplay(this.activePhrase.phrase);
         console.log(
             "In case you want to cheat, the random phrase is:",
             this.activePhrase
         );
+        this.activePhrase.addPhraseToDisplay(this.activePhrase);
     }
     getRandomPhrase() {
         // Create a random number between 1 and the length of the phrase:
